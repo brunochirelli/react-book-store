@@ -29,6 +29,9 @@
       "@/services/*": [
         "./api/services/*"
       ],
+      "@/types/*": [
+        "./app/_types/*"
+      ],
       "@/*": [
         "./*"
       ],
