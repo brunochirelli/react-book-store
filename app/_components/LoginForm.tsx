@@ -28,21 +28,24 @@ const LoginForm = () => {
     <>
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
-        <label>
-          E-mail
+        <div>
+          <label className="block" htmlFor="email">
+            E-mail
+          </label>
           <input
-            className="outline"
+            className="border"
             type="text"
             name="email"
             placeholder="E-mail"
             id="email"
             onChange={({ target }) => setUsername(target.value)}
           />
-        </label>
-        <label>
-          Password
+        </div>
+
+        <div>
+          <label className="block">Password</label>
           <input
-            className="outline"
+            className="border"
             type={isPasswordVisible ? "text" : "password"}
             name="password"
             id="password"
@@ -54,20 +57,23 @@ const LoginForm = () => {
           >
             {isPasswordVisible ? <EyeSlashIcon /> : <EyeIcon />}
           </button>
-        </label>
-        <button
-          className="px-2 py-1 disabled:bg-slate-300"
-          type="submit"
-          disabled={hasError}
-        >
-          Login
-        </button>
-        {/* Disclaimer message */}
-        <small>This is a demo site. Do not use real credentials.</small>
+        </div>
+
+        <div>
+          <button
+            className="block px-2 py-1 disabled:bg-slate-300"
+            type="submit"
+            disabled={hasError}
+          >
+            Login
+          </button>
+          <small>This is a demo site. Do not use real credentials.</small>
+        </div>
       </form>
       <section>
-        <p>New user?</p>
-        <Link href="/register">Create a new account</Link>
+        <small>
+          New user? <Link href="/register">Create a new account</Link>
+        </small>
       </section>
     </>
   );
