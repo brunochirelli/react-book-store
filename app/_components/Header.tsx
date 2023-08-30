@@ -1,10 +1,12 @@
+import React from "react";
+
 import {
   Bars3Icon,
   MagnifyingGlassIcon,
   ShoppingCartIcon,
   UserIcon,
 } from "@heroicons/react/24/solid";
-import React from "react";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -13,7 +15,7 @@ const Header = () => {
         <div>
           <nav>
             <Bars3Icon className="w-5" />
-            <div>Logo</div>
+            <Link href="/">Logo</Link>
           </nav>
           <nav>
             <div>
