@@ -31,6 +31,11 @@ paths:
       responses:
         '200':
           description: User registered successfully
+          content:
+            application/json:
+              example:
+                message: Registration successful
+                token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
         '400':
           description: Bad request, invalid input data
           
@@ -61,9 +66,9 @@ paths:
         '401':
           description: Unauthorized, incorrect credentials
 
-# components:
-#   securitySchemes:
-#     BearerAuth:
-#       type: http
-#       scheme: bearer
-#       bearerFormat: JWT
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

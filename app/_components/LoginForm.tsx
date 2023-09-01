@@ -1,55 +1,68 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { useForm } from "react-hook-form";
 
+import { useToken } from "@/hooks/useToken";
 import { userService } from "@/services/user.service";
+import { LoginUserType } from "@/types/user.types";
 
 const LoginForm = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [hasError, setHasError] = useState(true);
+  const { token, setToken } = useToken();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    userService.login(username, password);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isValid },
+  } = useForm<LoginUserType>();
+
+  const onSubmit = async ({ username, password }: LoginUserType) => {
+    try {
+      const response = await userService.login(username, password);
+      setToken(response.token);
+      reset();
+    } catch (error: any) {}
   };
 
-  useEffect(() => {
-    if (username && password) {
-      setHasError(false);
-    }
-  }, [username, password]);
+  if (token) redirect("/");
 
   return (
     <>
       <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label className="block" htmlFor="email">
             E-mail
           </label>
           <input
+            {...register("username", { required: true })}
             className="border"
-            type="text"
-            name="email"
+            type="email"
             placeholder="E-mail"
             id="email"
-            onChange={({ target }) => setUsername(target.value)}
           />
+          {errors.username && (
+            <small className="block text-red-500">
+              {errors.username.message}
+            </small>
+          )}
         </div>
 
         <div>
-          <label className="block">Password</label>
+          <label className="block" htmlFor="password">
+            Password
+          </label>
           <input
+            {...register("password", { required: true })}
             className="border"
             type={isPasswordVisible ? "text" : "password"}
-            name="password"
             id="password"
-            onChange={({ target }) => setPassword(target.value)}
           />
           <button
             className="w-5"
@@ -58,12 +71,17 @@ const LoginForm = () => {
             {isPasswordVisible ? <EyeSlashIcon /> : <EyeIcon />}
           </button>
         </div>
+        {errors.username && (
+          <small className="block text-red-500">
+            {errors.username.message}
+          </small>
+        )}
 
         <div>
           <button
-            className="block px-2 py-1 disabled:bg-slate-300"
+            className="my-2 py-1 block border w-full rounded disabled:bg-slate-200"
             type="submit"
-            disabled={hasError}
+            disabled={!isValid}
           >
             Login
           </button>
