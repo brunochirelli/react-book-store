@@ -4,3 +4,19 @@ export type RegisterUserType = {
   password: string;
   confirmPassword: string;
 };
+
+export type RegisterResponseType = {
+  message: string;
+  token: string;
+};
+
+export type UserType = {
+  id: string;
+  fullName: string;
+  email: string;
+};
+
+export type LoginUserType = {
+  username: string;
+  password: string;
+};

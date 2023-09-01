@@ -22,6 +22,7 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
       "@/components/*": [
         "./app/_components/*"
@@ -31,6 +32,12 @@
       ],
       "@/types/*": [
         "./app/_types/*"
+      ],
+      "@/hooks/*": [
+        "app/_hooks/*"
+      ],
+      "@/contexts/*": [
+        "app/_contexts/*"
       ],
       "@/*": [
         "./*"

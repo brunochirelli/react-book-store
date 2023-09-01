@@ -1,5 +1,8 @@
 import "./globals.css";
+
 import type { Metadata } from "next";
+
+import { UserProvider } from "@/contexts/userContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,7 +16,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {/* <Auth0Provider
+          domain="dev-qa9pe6p5.us.auth0.com"
+          clientId="pHXwG90qhKI3mRJNqyrddmJoHWaroUxA"
+          authorizationParams={{
+            redirect_uri:
+              typeof window !== "undefined" ? window.location.origin : "",
+          }}
+        > */}
+        <UserProvider>{children}</UserProvider>
+        {/* </Auth0Provider> */}
+      </body>
     </html>
   );
 }
