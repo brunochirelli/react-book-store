@@ -6,6 +6,7 @@ import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 import { useToken } from "@/hooks/useToken";
 import { userService } from "@/services/user.service";
@@ -25,8 +26,13 @@ const LoginForm = () => {
   const onSubmit = async ({ username, password }: LoginUserType) => {
     try {
       const response = await userService.login(username, password);
-      setToken(response.token);
-      reset();
+
+      if (response.token) {
+        toast("Welcome!");
+        reset();
+        return setToken(response.token);
+      }
+      toast("Ops... Something went wrong");
     } catch (error: any) {}
   };
 

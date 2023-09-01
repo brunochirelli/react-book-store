@@ -1,8 +1,12 @@
-import "./globals.css";
+import { Suspense } from "react";
 
 import type { Metadata } from "next";
+import { ToastContainer } from "react-toastify";
 
 import { UserProvider } from "@/contexts/userContext";
+
+import "./globals.css";
+import { NotificationProvider } from "./_contexts/notificationContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,16 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {/* <Auth0Provider
-          domain="dev-qa9pe6p5.us.auth0.com"
-          clientId="pHXwG90qhKI3mRJNqyrddmJoHWaroUxA"
-          authorizationParams={{
-            redirect_uri:
-              typeof window !== "undefined" ? window.location.origin : "",
-          }}
-        > */}
-        <UserProvider>{children}</UserProvider>
-        {/* </Auth0Provider> */}
+        <NotificationProvider>
+          <UserProvider>{children}</UserProvider>
+        </NotificationProvider>
       </body>
     </html>
   );
