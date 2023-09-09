@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "mock": "prism mock ./api/openapi.yaml --cors --port 3001"
+    "mock": "prism mock ./openapi/openapi.yaml -d --cors --port 3001"
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.2.1",
