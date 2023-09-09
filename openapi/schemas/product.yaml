@@ -1,0 +1,23 @@
+type: object
+properties:
+  title:
+    type: string
+    example: Book 1
+    x-faker:
+      commerce.productName:
+  author:
+    type: string
+    example: Author 1
+  image:
+    type: string
+    example: https://via.placeholder.com/177x254
+  price:
+    type: number
+    format: float
+    x-faker:
+      commerce.price:
+  description:
+    type: string
+    example: Description of Book 1
+    x-faker:
+      lorem.paragraph:

@@ -28,7 +28,7 @@
         "./app/_components/*"
       ],
       "@/services/*": [
-        "./api/services/*"
+        "app/_services/*"
       ],
       "@/types/*": [
         "./app/_types/*"

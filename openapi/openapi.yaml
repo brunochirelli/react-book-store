@@ -4,6 +4,12 @@ info:
   version: 1.0.0
   description: API for managing eBook digital store operations.
 
+x-json-schema-faker:
+  min-items: 2
+  max-items: 10
+  optionalsProbability: 1
+  resolve-json-path: true
+
 paths:
   /auth/register:
     post:
@@ -29,16 +35,16 @@ paths:
                   type: string
                   example: password123
       responses:
-        '200':
+        "200":
           description: User registered successfully
           content:
             application/json:
               example:
                 message: Registration successful
                 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
-        '400':
+        "400":
           description: Bad request, invalid input data
-          
+
   /auth/login:
     post:
       summary: User login
@@ -56,17 +62,28 @@ paths:
                   type: string
                   example: password123
       responses:
-        '200':
+        "200":
           description: User logged in successfully
           content:
             application/json:
               example:
                 message: Login successful
                 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9 (example JWT token)
-        '401':
+        "401":
           description: Unauthorized, incorrect credentials
-
+  /auth/products:
+    get:
+      summary: Get a list of eBooks
+      responses:
+        "200":
+          description: List of eBooks retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Products"
 components:
+  schemas:
+    $ref: "./schemas/_index.yaml"
   securitySchemes:
     BearerAuth:
       type: http

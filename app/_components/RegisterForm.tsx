@@ -8,7 +8,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useForm } from "react-hook-form";
 
-import { userService } from "@/services/user.service";
+import { userService } from "@/app/_services/user.service";
 import { RegisterUserType } from "@/types/user.types";
 
 const RegisterForm = ({ token, setToken }: { token?: any; setToken?: any }) => {

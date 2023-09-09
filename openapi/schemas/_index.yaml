@@ -1,0 +1,4 @@
+Product:
+  $ref: "./product.yaml"
+Products:
+  $ref: "./products.yaml"

@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
 import { useToken } from "@/hooks/useToken";
-import { userService } from "@/services/user.service";
+import { userService } from "@/app/_services/user.service";
 import { LoginUserType } from "@/types/user.types";
 
 const LoginForm = () => {
